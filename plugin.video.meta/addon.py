@@ -169,7 +169,7 @@ def settings_set_default_player_fromlib(media):
     plugin.open_settings()
     
 @plugin.route('/settings/default_player_fromcontext/<media>')
-def settings_set_default_player_fromlib(media):
+def settings_set_default_player_fromcontext(media):
     players = active_players(media)
     players.insert(0, ADDON_SELECTOR)
     
