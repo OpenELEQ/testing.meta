@@ -9,7 +9,7 @@ from meta.info import get_movie_metadata
 from meta.play.players import get_needed_langs, ADDON_SELECTOR
 from meta.play.base import get_trakt_ids, active_players, action_cancel, action_play, on_play_video
 
-from settings import SETTING_USE_SIMPLE_SELECTOR, SETTING_MOVIES_DEFAULT_PLAYER, SETTING_MOVIES_DEFAULT_PLAYER_FROM_LIBRARY
+from settings import SETTING_USE_SIMPLE_SELECTOR, SETTING_MOVIES_DEFAULT_PLAYER, SETTING_MOVIES_DEFAULT_PLAYER_FROM_LIBRARY, SETTING_MOVIES_DEFAULT_PLAYER_FROM_CONTEXT
 from language import get_string as _
 
 def play_movie(tmdb_id, mode):  
@@ -20,6 +20,8 @@ def play_movie(tmdb_id, mode):
         play_plugin = ADDON_SELECTOR.id
     elif mode == 'library':
         play_plugin = plugin.get_setting(SETTING_MOVIES_DEFAULT_PLAYER_FROM_LIBRARY)
+    elif mode == 'context':
+        play_plugin = plugin.get_setting(SETTING_MOVIES_DEFAULT_PLAYER_FROM_CONTEXT)
     else:
         play_plugin = plugin.get_setting(SETTING_MOVIES_DEFAULT_PLAYER)
     players = active_players("movies")

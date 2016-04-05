@@ -91,20 +91,36 @@ def trakt_authenticate():
     trakt.trakt_authenticate()
     
 @plugin.route('/settings/players/<media>')
+
+
 def settings_set_players(media):
     players = get_players(media)
     players = sorted(players,key=lambda player: player.clean_title.lower())
 
     # Get selection by user
     selected = None
+    mediatype = media.replace('es','e').replace('ws','w')
     try:
-        result = dialogs.multiselect(_("Enable players"), [p.clean_title for p in players])
-        if result is not None:
-            selected = [players[i].id for i in result]
-    except:
-        msg = "Kodi 16 required. Do you want to enable all players instead?"
-        if dialogs.yesno(_("Warning"), _(msg)):
+        msg = "Do you want to enable all "+mediatype+" players?"
+        if dialogs.yesno(_("Enable all "+mediatype+" players"), _(msg)):
+            enableall = True
             selected = [p.id for p in players]
+        else:
+            enableall = False
+            result = dialogs.multiselect(_("Select "+mediatype+" players to enable"), [p.clean_title for p in players])
+            if result is not None:
+                selected = [players[i].id for i in result]
+    except:
+        if enableall == False:
+            msg = "Kodi 16 required for manual multi-selection. Do you want to enable all "+mediatype+" players instead?"
+            if dialogs.yesno(_("Warning"), _(msg)):
+                selected = [p.id for p in players]
+            else:
+                return
+        elif enableall == True:
+            selected = [p.id for p in players]
+        else:
+            pass
     
     if selected is not None:
         if media == "movies":
@@ -147,6 +163,23 @@ def settings_set_default_player_fromlib(media):
             plugin.set_setting(SETTING_MOVIES_DEFAULT_PLAYER_FROM_LIBRARY, selected)
         elif media == "tvshows":
             plugin.set_setting(SETTING_TV_DEFAULT_PLAYER_FROM_LIBRARY, selected)
+        else:
+            raise Exception("invalid parameter %s" % media)
+    
+    plugin.open_settings()
+    
+@plugin.route('/settings/default_player_fromcontext/<media>')
+def settings_set_default_player_fromlib(media):
+    players = active_players(media)
+    players.insert(0, ADDON_SELECTOR)
+    
+    selection = dialogs.select(_("Select player"), [p.title for p in players])
+    if selection >= 0:
+        selected = players[selection].id
+        if media == "movies":
+            plugin.set_setting(SETTING_MOVIES_DEFAULT_PLAYER_FROM_CONTEXT, selected)
+        elif media == "tvshows":
+            plugin.set_setting(SETTING_TV_DEFAULT_PLAYER_FROM_CONTEXT, selected)
         else:
             raise Exception("invalid parameter %s" % media)
     
