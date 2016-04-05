@@ -20,6 +20,7 @@ from meta.play.players import get_players, ADDON_SELECTOR
 import meta.navigation.movies
 import meta.navigation.tvshows
 import meta.navigation.live
+import meta.navigation.search
 from meta.navigation.base import get_icon_path
 from meta.play.base import active_players
 
@@ -91,8 +92,6 @@ def trakt_authenticate():
     trakt.trakt_authenticate()
     
 @plugin.route('/settings/players/<media>')
-
-
 def settings_set_players(media):
     players = get_players(media)
     players = sorted(players,key=lambda player: player.clean_title.lower())
@@ -118,7 +117,7 @@ def settings_set_players(media):
             else:
                 return
         elif enableall == True:
-            selected = [p.id for p in players]
+              selected = [p.id for p in players]
         else:
             pass
     
