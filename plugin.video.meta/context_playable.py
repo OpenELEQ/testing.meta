@@ -14,10 +14,6 @@ def get_url(stream_file):
             content = f.read()
             if content.startswith("plugin://" + pluginid):
                 return content.replace("/library", "/context")
-        except:
-            content = f.read()
-            if content.startswith("plugin://" + pluginid):
-                return content.replace("/library", "/select")
         finally:
             f.close()
             

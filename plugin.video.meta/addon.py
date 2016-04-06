@@ -20,7 +20,7 @@ from meta.play.players import get_players, ADDON_SELECTOR
 import meta.navigation.movies
 import meta.navigation.tvshows
 import meta.navigation.live
-import meta.navigation.search
+import meta.navigation.lists
 from meta.navigation.base import get_icon_path
 from meta.play.base import active_players
 
@@ -47,7 +47,12 @@ def root():
         {
             'label': _("Live"),
             'path': plugin.url_for("live"),
-            'icon': get_icon_path("tv"),
+            'icon': get_icon_path("live"),
+        },
+        {
+            'label': _("Lists"),
+            'path': plugin.url_for("lists"),
+            'icon': get_icon_path("lists"),
         }
     ]
     
@@ -117,7 +122,7 @@ def settings_set_players(media):
             else:
                 return
         elif enableall == True:
-              selected = [p.id for p in players]
+            selected = [p.id for p in players]
         else:
             pass
     
@@ -183,7 +188,6 @@ def settings_set_default_player_fromcontext(media):
             raise Exception("invalid parameter %s" % media)
     
     plugin.open_settings()
-    
 @plugin.route('/update_players')
 def update_players():
     url = plugin.get_setting(SETTING_PLAYERS_UPDATE_URL)

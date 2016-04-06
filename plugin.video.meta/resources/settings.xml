@@ -26,7 +26,7 @@
             <!-- Default player from context -->
             <setting label="30122" option="close" type="action" action="RunPlugin(plugin://plugin.video.meta/settings/default_player_fromcontext/movies)"/>
             <setting subsetting="true" visible="!eq(0,)" enable="false" type="text" id="movies_default_player_from_context" default="selector" />
-        
+    
         <!-- TV shows -->
         <setting label="30200" type="lsep"/>
         
@@ -41,7 +41,7 @@
             <!-- Default players from library -->
             <setting label="30211" option="close" type="action" action="RunPlugin(plugin://plugin.video.meta/settings/default_player_fromlib/tvshows)"/>
             <setting subsetting="true" visible="!eq(0,)" enable="false" type="text" id="tv_default_player_from_library" default="selector" />
-            
+
             <!-- Default players from context -->
             <setting label="30212" option="close" type="action" action="RunPlugin(plugin://plugin.video.meta/settings/default_player_fromcontext/tvshows)"/>
             <setting subsetting="true" visible="!eq(0,)" enable="false" type="text" id="tv_default_player_from_context" default="selector" />

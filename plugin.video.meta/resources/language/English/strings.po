@@ -64,7 +64,7 @@ msgid "Preferred TV player from library"
 msgstr ""
 
 msgctxt "#30212"
-msgid "Preferred TV player from contextmenu"
+msgid "Preferred movie player from contextmenu"
 msgstr ""
 
 msgctxt "#30300"
@@ -132,7 +132,7 @@ msgid "Genres"
 msgstr ""
 
 msgctxt "#30602"
-msgid "Select stream..."
+msgid "Context player"
 msgstr ""
 
 msgctxt "#30603"
@@ -287,4 +287,20 @@ msgstr ""
 
 msgctxt "#30510"
 msgid "Prefered Live Player"
+msgstr ""
+
+msgctxt "#30001"
+msgid "Move down"
+msgstr ""
+
+msgctxt "#30002"
+msgid "Move up"
+msgstr ""
+
+msgctxt "#30003"
+msgid "Clear channels"
+msgstr ""
+
+msgctxt "#30004"
+msgid "Remove channel"
 msgstr ""

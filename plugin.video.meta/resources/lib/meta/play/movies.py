@@ -18,10 +18,10 @@ def play_movie(tmdb_id, mode):
     # Get players to use
     if mode == 'select':
         play_plugin = ADDON_SELECTOR.id
-    elif mode == 'library':
-        play_plugin = plugin.get_setting(SETTING_MOVIES_DEFAULT_PLAYER_FROM_LIBRARY)
     elif mode == 'context':
         play_plugin = plugin.get_setting(SETTING_MOVIES_DEFAULT_PLAYER_FROM_CONTEXT)
+    elif mode == 'library':
+        play_plugin = plugin.get_setting(SETTING_MOVIES_DEFAULT_PLAYER_FROM_LIBRARY)
     else:
         play_plugin = plugin.get_setting(SETTING_MOVIES_DEFAULT_PLAYER)
     players = active_players("movies")
